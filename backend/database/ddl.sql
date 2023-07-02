@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS test
+(
+[id] INTEGER PRIMARY KEY, 
+[data] TEXT
+);
+
+CREATE TABLE IF NOT EXISTS test2
+(
+[id] INTEGER PRIMARY KEY, 
+[next_data] TEXT
+);
