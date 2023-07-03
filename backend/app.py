@@ -1,5 +1,5 @@
 from flask import Flask, g, jsonify
-from database import query_db, query_sql_db, initialize_database_ddl, initialize_database_dml
+from database import query_db, initialize_database_ddl, initialize_database_dml
 import config
 import os
 
@@ -15,27 +15,12 @@ def test():
     result = query_db("select * from test")
     return jsonify(result)
 
-@app.route(config.BASE_API_PATH + '/test_sql_select')
-def test_sql_db_select():
-    result = query_sql_db("select * from names")
-    return jsonify(result)
-
-@app.route(config.BASE_API_PATH + '/test_sql_stored_procedure')
-def test_sql_db_stored_procedure():
-    sql = "{call [test].[dbo].testStoredProcedure(?)}"
-    values = (5)
-    result = query_sql_db(sql, values)
-    return jsonify(result)
-
 # Base Configuration
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
-    sql_db = getattr(g, '_sql_database', None)
     if db is not None:
         db.close()
-    if sql_db is not None:
-        sql_db.close()
 
 # NO CORS
 @app.after_request
