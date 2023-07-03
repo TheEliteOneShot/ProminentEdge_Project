@@ -2,6 +2,11 @@ import sqlite3
 import config
 from flask import g
 
+# Basic CRUD statements for CAD files
+
+
+
+# Common Functions
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:

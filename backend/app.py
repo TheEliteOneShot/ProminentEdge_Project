@@ -1,7 +1,9 @@
-from flask import Flask, g, jsonify
-from database import query_db, initialize_database_ddl, initialize_database_dml
+from flask import Flask, g, jsonify, request
+from database import initialize_database_ddl, initialize_database_dml
+import services
 import config
 import os
+import json
 
 app = Flask(__name__)
 
@@ -12,8 +14,23 @@ def hello_world():
 
 @app.route(config.BASE_API_PATH + '/test')
 def test():
-    result = query_db("select * from test")
+    #result = query_db("select * from test")
+    return jsonify(True)
+
+@app.route(config.BASE_API_PATH + '/upload_cad_files', methods = ['POST'])
+def upload_cad_file():
+    
+    fileData = []
+
+    for file in request.files.getlist('file'):
+        result = json.loads(file.read())
+        result['filename'] = file.filename
+        fileData.append(result)
+    
+    result = services.upload_cad_file(fileData)
+
     return jsonify(result)
+
 
 # Base Configuration
 @app.teardown_appcontext
