@@ -1,5 +1,15 @@
-from database import insert_cad_file_into_db, insert_cad_address_into_database, insert_cad_apparatus_into_database, insert_cad_unitstatus_into_db, insert_cad_description_into_db, insert_cad_firedepartment_into_database
+from database import query_db, insert_cad_file_into_db, insert_cad_address_into_database, insert_cad_apparatus_into_database, insert_cad_unitstatus_into_db, insert_cad_description_into_db, insert_cad_firedepartment_into_database
 
+def get_uploaded_cad_files():
+    sql = '''
+    SELECT 
+       ID as CADFILE_ID,
+       fileName,
+       version,
+       uploaded_dt
+    FROM cadfile_upload;
+    '''
+    return query_db(sql)
 
 def upload_cad_file(cad_file_data):
 

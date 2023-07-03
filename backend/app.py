@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 # Routes
 @app.route('/')
-def hello_world():
-    return 'hello_world from the API!'
+def base_path():
+    return 'The base path for the api is currently: [' + config.BASE_API_PATH + ']'
 
 @app.route(config.BASE_API_PATH + '/test')
 def test():
@@ -31,7 +31,13 @@ def upload_cad_file():
 
     return jsonify(result)
 
+@app.route(config.BASE_API_PATH + '/get_uploaded_cad_files', methods = ['GET'])
+def get_uploaded_cad_files():
 
+    result = services.get_uploaded_cad_files()
+
+    return jsonify(result)
+    
 # Base Configuration
 @app.teardown_appcontext
 def close_connection(exception):

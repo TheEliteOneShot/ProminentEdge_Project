@@ -1,10 +1,13 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+
+//@ts-ignore
 import { GoogleMap, Marker } from "vue3-google-map";
+
+import { defineComponent } from "vue";
 import GridFromServer from '/@src/components/GridFromServer.vue'
 import config from '/@src/config';
 
-import { getTestItems } from '/@src/api/getTestItems';
+import { getUploadedCadFiles } from '/@src/api/getUploadedCadFiles';
 import { uploadCadFiles } from '/@src/api/uploadCadFiles';
 
 import { ref } from 'vue';
@@ -36,8 +39,8 @@ export default defineComponent({
     const gridServerDataSource = async () => {
       return {
         getRows: async function (params: any) {
-          return await getTestItems()
-            .then(async (data) => {
+          return await getUploadedCadFiles()
+            .then(async (data: any) => {
               params.success({ rowData: data });
             })
             .catch(() => {
@@ -49,8 +52,10 @@ export default defineComponent({
 
     const gridServerDataOptions = {
       columnDefs: [
-        { field: 'id', mindWidth: 50, flex: 1 },
-        { field: 'data', flex: 2, minWidth: 500 },
+      { field: 'CADFILE_ID', mindWidth: 50, flex: 1 },
+        { field: 'fileName', mindWidth: 50, flex: 1 },
+        { field: 'version', mindWidth: 50, flex: 1 },
+        { field: 'uploaded_dt', mindWidth: 50, flex: 1 },
       ],
       defaultColDef: {
         sortable: true,
@@ -66,8 +71,9 @@ export default defineComponent({
         uploadCadFileText.value = isUploadingCADFileTrueText;
       } else {
         uploadCadFileText.value = isUploadingCADFileFalseText;
+        alert('File upload completed');
       }
-      uploadCadFileLoadingHidden.value = status;
+      uploadCadFileLoadingHidden.value = !status;
     }
 
     const showSelectedFile = async () => {
@@ -80,7 +86,6 @@ export default defineComponent({
       files.value?.forEach(file => {
         formData.append('file', file);
       });
-      console.log('uploading here');
 
       await setIsUploadingCadFile(true)
         .then(() => uploadCadFiles(formData))
@@ -107,11 +112,9 @@ export default defineComponent({
       <br />
       <br />
       <div style="position:relative;">
-        <BButton v-on:click="uploadSelectedCadFiles" style="width:20rem" variant="success"><span class="visually-hidden">
-            <BSpinner v-bind:class="{ visibility: uploadCadFileLoadingHidden }" small /> Loading...
-          </span>{{ uploadCadFileText
-          }} &nbsp;&nbsp;
-
+        <BButton v-on:click="uploadSelectedCadFiles" style="width:20rem" variant="success">
+          <BSpinner :hidden="uploadCadFileLoadingHidden" small />
+          {{ uploadCadFileText }} &nbsp;&nbsp;
         </BButton>
       </div>
     </BAccordionItem>
