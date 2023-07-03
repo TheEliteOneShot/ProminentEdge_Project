@@ -1,1 +1,1 @@
-from database.initialization import query_db, get_db, initialize_database_ddl, initialize_database_dml
+from database.initialization import query_db, query_sql_db, initialize_database_ddl, initialize_database_dml
