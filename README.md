@@ -1,6 +1,6 @@
-# ProminentEdge_Project - Easy Computer Aided Response (CAD) Viewing Tool
+# Easy Computer Aided Response (CAD) Viewing Tool
 
-The completed project that satisfied all of the project requirements in a quality way. The CAD files are uploaded into an SQLite database. It is possible to upload more than one CAD file at a single time.
+The completed project that satisfied all of the project requirements in a quality way. The CAD files are uploaded into an SQLite database. It is possible to upload more than one CAD file at a single time. Location markers are added to a Google Map based on their longitude and latitude. When a marker is clicked, information is queried from the SQLITE database and display. In addition, the meteos API is queries based on longitude, latitude, and the date to provide weather context to the event. 
 
 # Installation for Windows (Tested on Windows 11)
 
@@ -16,12 +16,13 @@ The completed project that satisfied all of the project requirements in a qualit
 # Startup instructions
 
 - Run **start_backend.ps1** to start up the backend server. This will start the flask app and initialize the database.
-- Run **start_frontend.ps1** to start up the frontend server. This will start the frontend Vue server. Follow the localhost link to the web page written to the console when the script has finished starting. (note: if the NPM doesn't automatically download the package.json dependencies it may require typing 'npm install' into the console inside the frontend folder directory.
+- Run **start_frontend.ps1** to start up the frontend server. This will start the frontend Vue server. Follow the localhost link to the web page written to the console when the script has finished starting. (note: If the NPM doesn't automatically download the package.json dependencies it may require typing 'npm install' into the console inside the frontend folder directory.)
 
 # Improvements if I had double the time
 
 - I would polish the app further by adding in the Vue router so that I could add another page that showed an event timeline for the entire CAD file. Each event would be clickable and it would automatically scroll to the Google Map Marker that the event was referencing.
 - I would polish the Google Map API by removing overlapping Markers. As it currently stands, it's very difficult to read Markers that are very close in physical proximity.
+- I would add the ability to delete CAD files from the database via the user interface.
 
 # How much time did I spend on the app
 

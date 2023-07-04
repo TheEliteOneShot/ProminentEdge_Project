@@ -209,8 +209,6 @@ export default defineComponent({
       wpgt.value = result.wpgt;
       wspd.value = result.wspd;
 
-      console.log(result);
-
       latitude.value = event_position.lat;
       longitude.value = event_position.lng;
       label.value = event_label;
