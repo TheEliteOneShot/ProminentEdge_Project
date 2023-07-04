@@ -1,4 +1,4 @@
-# ProminentEdge_Project
+# ProminentEdge_Project - Easy Computer Aided Response (CAD) Viewing Tool
 
 The completed project that satisfied all of the project requirements in a quality way. The CAD files are uploaded into an SQLite database. It is possible to upload more than one CAD file at a single time.
 
@@ -30,6 +30,9 @@ The completed project that satisfied all of the project requirements in a qualit
 - Time Spent: 4 hours :)
   
 # Images
+
+# The Simple User Interface 
+![0_beginning](https://github.com/TheEliteOneShot/ProminentEdge_Project/assets/45804405/eb64d423-c7bf-4386-a550-6d53df24be20)
 
 # 1. Upload any amount of CAD files
   
