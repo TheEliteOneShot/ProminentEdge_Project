@@ -31,6 +31,15 @@ def upload_cad_file():
 
     return jsonify(result)
 
+@app.route(config.BASE_API_PATH + '/get_apparatus_information_by_cadfile_id', methods = ['GET'])
+def get_apparatus_information_by_cadfile_id():
+
+    cadfile_id = request.args.get('cadfileid')
+    
+    result = services.get_apparatus_information_by_cadfile_id(cadfile_id)
+
+    return jsonify(result)
+
 @app.route(config.BASE_API_PATH + '/get_uploaded_cad_files', methods = ['GET'])
 def get_uploaded_cad_files():
 

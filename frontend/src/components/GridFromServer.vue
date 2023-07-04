@@ -7,7 +7,7 @@ export default defineComponent({
   name: 'GridUserItems',
   props: ['serverDataSource', 'options'],
   setup(props) {
-    
+
     onActivated(async () => {
       if (props.options?.api?.refreshServerSideStore !== undefined)
         props.options.api.refreshServerSideStore();

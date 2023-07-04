@@ -11,6 +11,7 @@ const routes = {
     baseApi: {
       uploadCadFiles: `${env.API_BASE_PROTOCOL}://${env.API_BASE_HOST}:${env.API_BASE_PORT}${env.API_BASE_PREFIX}/upload_cad_files`,
       getUploadedCadFiles: `${env.API_BASE_PROTOCOL}://${env.API_BASE_HOST}:${env.API_BASE_PORT}${env.API_BASE_PREFIX}/get_uploaded_cad_files`,
+      getApparatusInformationByCadFileID: `${env.API_BASE_PROTOCOL}://${env.API_BASE_HOST}:${env.API_BASE_PORT}${env.API_BASE_PREFIX}/get_apparatus_information_by_cadfile_id`,
     },
   };
   

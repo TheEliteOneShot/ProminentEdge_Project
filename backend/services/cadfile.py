@@ -1,12 +1,23 @@
 from database import query_db, insert_cad_file_into_db, insert_cad_address_into_database, insert_cad_apparatus_into_database, insert_cad_unitstatus_into_db, insert_cad_description_into_db, insert_cad_firedepartment_into_database
 
+def get_apparatus_information_by_cadfile_id(cadfile_id):
+    sql = '''
+    SELECT
+    CA.unit_id,
+    CU.*
+    FROM cadfile_apparatus CA
+    INNER JOIN cadfile_unitstatus CU ON CA.ID = CU.APPARATUS_ID
+    WHERE CA.CADFILE_ID = {CADFILE_ID}
+    '''.format(CADFILE_ID = cadfile_id)
+    return query_db(sql)
+
 def get_uploaded_cad_files():
     sql = '''
     SELECT 
-       ID as CADFILE_ID,
+       ID as SELECTED,
        fileName,
        version,
-       uploaded_dt
+       uploaded_dt as uploaded_date
     FROM cadfile_upload;
     '''
     return query_db(sql)
