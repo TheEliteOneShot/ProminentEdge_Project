@@ -5,5 +5,5 @@ const getApparatusInformationByCadFileIDRoute = config.routes.baseApi.getApparat
 export async function getApparatusInformationByCadFileID(cadfile_id: number) {
     return await fetch(getApparatusInformationByCadFileIDRoute + `?cadfileid=${cadfile_id}` )
     .then(response => response.json())
-    .catch(() => console.error(`There was an error fetching getUploadedCadFiles`));
+    .catch(() => console.error(`There was an error fetching getApparatusInformationByCadFileID`));
 }

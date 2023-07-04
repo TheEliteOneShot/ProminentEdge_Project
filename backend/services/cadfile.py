@@ -3,10 +3,25 @@ from database import query_db, insert_cad_file_into_db, insert_cad_address_into_
 def get_apparatus_information_by_cadfile_id(cadfile_id):
     sql = '''
     SELECT
+    CUP.ID as FILE_ID,
+    CUP.fileName as FILE_NAME,
     CA.unit_id,
-    CU.*
+    CA.car_id,
+    CA.geohash,
+    CA.event_duration,
+    CA.response_duration,
+    CA.travel_duration,
+    CA.turnout_duration,
+    CA.unit_type,
+    CU.APPARATUS_ID,
+    CU.geohash,
+    CU.latitude,
+    CU.longitude,
+    CU.timestamp,
+    CU.type
     FROM cadfile_apparatus CA
     INNER JOIN cadfile_unitstatus CU ON CA.ID = CU.APPARATUS_ID
+    INNER JOIN cadfile_upload CUP ON CA.CADFILE_ID = CUP.ID
     WHERE CA.CADFILE_ID = {CADFILE_ID}
     '''.format(CADFILE_ID = cadfile_id)
     return query_db(sql)
@@ -14,7 +29,7 @@ def get_apparatus_information_by_cadfile_id(cadfile_id):
 def get_uploaded_cad_files():
     sql = '''
     SELECT 
-       ID as SELECTED,
+       ID as SELECTED_FILE_ID,
        fileName,
        version,
        uploaded_dt as uploaded_date
