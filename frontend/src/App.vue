@@ -10,7 +10,7 @@ import Main from '/@src/components/Main.vue'
 </script>
 
 <template>
-  <Main msg="Message From Parent Component" />
+  <Main />
 </template>
 
 <style scoped>
